@@ -1,5 +1,5 @@
 % football parameters
-polar_moment = 0.0501; % polar moment of intertia: kg*m^2
+polar_moment = 0.0501*0.1; % polar moment of inertia: kg*m^2
 a0 = 0.089; 
 b0 = 0.089;
 c0 = 0.1395;
@@ -7,14 +7,14 @@ a1 = 0.085;
 b1 = 0.085;
 c1 = 0.136;
 leather_density = 1000;
-mass = leather_density*(4/3)*pi*(a0*b0*c0 - a1*b1*c1);
+mass = leather_density*(4/3)*pi*(a0*b0*c0 - a1*b1*c1)*0.1;
 
 % launcher parameters
-omega_w1 = 110; % wheel 1 angular velocity: rad/s
-omega_w2 = 110; % wheel 2 angular velocity: rad/s
+omega_w1 = 100; % wheel 1 angular velocity: rad/s
+omega_w2 = 100; % wheel 2 angular velocity: rad/s
 r_wheel = 0.125; % radius of wheels: meters
-angle_w1 = -15; % angle between wheel and horizontal: deg
-angle_w2 = 30; % angle between wheel and horizontal: deg
+angle_w1 = 20; % angle between wheel and horizontal: deg
+angle_w2 = -20; % angle between wheel and horizontal: deg
 efficiency = 0.8; % efficiency due to slip/friction
 angle_launch = 30; % angle that ball is launched: deg
 cont_time = 0.1; % contact time: sec
