@@ -1,4 +1,4 @@
-% football parameters
+t % football parameters
 polar_moment = 0.0501*0.1; % polar moment of inertia: kg*m^2
 a0 = 0.089; 
 b0 = 0.089;
