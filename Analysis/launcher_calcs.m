@@ -1,4 +1,5 @@
-t % football parameters
+clear all
+% football parameters
 polar_moment = 0.0501*0.1; % polar moment of inertia: kg*m^2
 a0 = 0.089; 
 b0 = 0.089;
@@ -36,5 +37,6 @@ omega_ball = (cont_time*(abs(force_1)*r_wheel ...
 rpm = omega_ball/(2*pi)*60; % rpm of ball
 
 
+force_applied_ball = mass*v_ball_1/cont_time;
 
 
