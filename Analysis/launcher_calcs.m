@@ -20,7 +20,7 @@ r_wheel = 0.125; % radius of wheels: meters
 angle_w1 = 22.5; % angle between wheel and horizontal: deg
 angle_w2 = -22.5; % angle between wheel and horizontal: deg
 efficiency = 0.85; % efficiency due to slip/friction
-angle_launch = 30; % angle that ball is launched: deg
+angle_launch = 25; % angle that ball is launched: deg
 cont_time = 0.05; % contact time: sec
 
 
@@ -76,6 +76,7 @@ while y(i) >= 0
 end
 figure()
 plot(x,y)
+axis("equal")
 title("football Trajecotry")
 
 ball_distance = max(x)
