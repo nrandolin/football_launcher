@@ -74,9 +74,8 @@ while y(i) >= 0
     t(i+1) = t(i) + delta_t;
     i = i+1; 
 end
-figure()
 plot(x,y)
-title("football Trajecotry")
+title("Ideal Barrel Length Trajecotry")
 
 ball_distance = max(x)
 
@@ -115,11 +114,10 @@ end
 [max_dist, index] = max(ball_dist);
 ideal_angle = angles(index);
 
-figure()
+hold off
 plot(angles, ball_dist)
 title("ball distance v.s. launch angle")
 xlabel("launcher angle")
-ylabel("distance_traveled")
 
 
 
