@@ -78,6 +78,8 @@ figure()
 plot(x,y)
 axis("equal")
 title("football Trajecotry")
+xlabel("vertical travel (m)")
+ylabel("distance traveled (m)")
 
 ball_distance = max(x)
 
@@ -119,8 +121,57 @@ ideal_angle = angles(index);
 figure()
 plot(angles, ball_dist)
 title("ball distance v.s. launch angle")
-xlabel("launcher angle")
-ylabel("distance_traveled")
+xlabel("launcher angle (degrees)")
+ylabel("distance traveled (m")
+
+%% spin study
+
+angles = linspace(0,50,100);
+ball_dist = zeros(1,100);
+spin_rate = zeros(1,100);
+for j = 1:100
+    cannon_angle = angles(j); % DEGREES
+
+    wheel_speed_rpm = 1500;
+    omega_w1 = wheel_speed_rpm*2*pi()/60; % wheel 1 angular velocity: rad/s
+    omega_w2 = wheel_speed_rpm*2*pi()/60; % wheel 2 angular velocity: rad/s
+    r_wheel = 0.125; % radius of wheels: meters
+    angle_w1 = angles(j); % angle between wheel and horizontal: deg
+    angle_w2 = -angles(j); % angle between wheel and horizontal: deg
+    efficiency = 0.95; % efficiency due to slip/friction
+    angle_launch = 25; % angle that ball is launched: deg
+    cont_time = 0.05; % contact time: sec
+    
+    
+    v_w1 = omega_w1 * r_wheel; % wheel 1 linear velocity: m/s
+    v_w2 = omega_w2 * r_wheel; % wheel 2 linear velocity: m/s
+    v_ball = sqrt(((v_w1*cosd(angle_w1) + v_w2*cosd(angle_w2))*efficiency)^2 ...
+        + ((v_w1*sind(angle_w1) + v_w2*sind(angle_w2))*efficiency)^2) ;% velocity of ball: m/s
+    ball_dist(j) = (v_ball^2*sind(2*angle_launch))/9.81; % distance traveled: m
+    v_ball_1 = sqrt((v_ball*cosd(angle_w1))^2 ...
+        + (v_ball*sind(angle_w1))^2); % velocity imparted on ball from wheel 1: m/s
+    v_ball_2 = sqrt((v_ball*cosd(angle_w2))^2 ...
+        + (v_ball*sind(angle_w2))^2); % velocity imparted on ball from wheel 2: m/s
+    force_1 = mass*v_ball_1/cont_time*sind(angle_w1); % y force from wheel 1 on ball: N
+    force_2 = mass*v_ball_2/cont_time*sind(angle_w2); % y force from wheel 2 on ball: N
+    omega_ball = (cont_time*(abs(force_1)*r_wheel ...
+        + abs(force_2)*r_wheel))/polar_moment; % angular velocity of ball: rad/s
+    spin_rate(j) = omega_ball/(2*pi)*60*1.3 ;% rpm of ball
 
 
+    force_applied_ball = mass*v_ball_1/cont_time;
+end
+
+
+figure()
+plot(angles, ball_dist)
+title("ball distance v.s. wheel angle")
+xlabel("wheel angle (degrees)")
+ylabel("distance traveled (m)")
+
+figure()
+plot(angles, spin_rate)
+title("spin rate v.s. wheel angle")
+xlabel("wheel angle (m)")
+ylabel("spin rate (rpm)")
 
